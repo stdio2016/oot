@@ -1,0 +1,12 @@
+Superclass
+X{::={
+}I::=}
+}
+Subclass
+Superclass
+X{::={
+}
+{Superclass}X::=X{Superclass}
+::=
+
+q{Subclass}IX

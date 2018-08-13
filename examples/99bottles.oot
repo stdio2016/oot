@@ -1,0 +1,67 @@
+import stdio
+{"r" for "ready to proceed"
+Digit
+}i::=9}r
+9}-::=8}r
+8}-::=7}r
+7}-::=6}r
+6}-::=5}r
+5}-::=4}r
+4}-::=3}r
+3}-::=2}r
+2}-::=d1}!
+{d::=d{
+1}-::=c0}!
+{c::=c{
+0}-::=-.9}!
+r{-::=-{
+r{.::=rR{
+
+}o::=o}!
+{9o::=9{9r
+{8o::=8{8r
+{7o::=7{7r
+{6o::=6{6r
+{5o::=5{5r
+{4o::=4{4r
+{3o::=3{3r
+{2o::=2{2r
+{1o::=1{1r
+{0o::=0{0r
+r}!::=}r
+}
+
+Number
+}i::={Digit}i{Digit}i}!
+R{Digit}!::={Digit}r
+{c{Digit}!::={r
+d{Digit}::=D{Digit}x
+{D::={X
+X{Digit}x!{Digit}::={Digit}r{Digit}
+rD{Digit}x!::=r{Digit}r
+X{Digit}x!}!::=}1
+rc{Digit}!::=r{Digit}r
+r}-::=-}!
+r}!::=r}r
+}o::=O!}!
+{Digit}rO::=O{Digit}r
+{rO::={O
+{O{Digit}r::={{TextOutput}{Digit}o
+{TextOutput}{Digit}r{Digit}r::={Digit}r{TextOutput}{Digit}o
+{TextOutput}{Digit}r!::={Digit}r
+}
+
+Inert
+{I need a place-holder class so it won't get eaten by the {TextOutput}
+}
+rA::=oB
+rB{TextOutput}::=rC{TextOutput} bottles of beer on the wall,\n
+rC{TextOutput}{Inert}::=oD{TextOutput}{Inert}
+rD{TextOutput}::=rE{TextOutput} bottles of beer.\nTake one down, pass it around,\n
+rE{TextOutput}{Inert}::=-F{TextOutput}{Inert}
+rF::=oG
+rG{TextOutput}::=rH{TextOutput} bottles of beer on the wall.\n\n
+rH{TextOutput}{Inert}::=rA{TextOutput}{Inert}
+{Number}1F{TextOutput}{Inert}::={TextOutput}1 bottle of beer on the wall.\n\n1 bottle of beer on the wall,\n1 bottle of beer.\nTake it down, pass it around,\nno more bottles of beer on the wall!
+
+{Number}iA{TextOutput}{Inert}
