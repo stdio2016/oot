@@ -6,33 +6,6 @@ def removeTrailingNewline(line):
         line = line[:-1]
     return line
 
-def unescapeRule(line):
-    i = 0
-    parts = []
-    part = ""
-    f1 = line.find("{{::=}}")
-    f2 = line.find("::=")
-    while True:
-        if f1 == -1 and f2 == -1:
-            part += line[i:]
-            parts.append(part)
-            break
-        elif f1 == -1 or (f2 != -1 and f2 < f1):
-            # ::= fisrt
-            part = part + line[i:f2]
-            parts.append(part)
-            i = f2 + 3
-            part = ""
-            f2 = line.find("::=", i)
-        else:
-            # {{::=}} first
-            part += line[i:f1] + "::="
-            i = f1 + 7
-            if f2 < i:
-                f2 = line.find("::=", i)
-            f1 = line.find("{{::=}}", i)
-    return parts
-
 def parseFile(filename):
     f = open(filename)
     line = f.readline()
@@ -49,11 +22,8 @@ def parseFile(filename):
         # empty line
         if line == "":
             pass
-        # {} comment
-        elif line.startswith("{}"):
-            pass
         else:
-            parts = unescapeRule(line)
+            parts = line.split("::=")
             if len(parts) > 2:
                 pos = len(parts[0])+3+len(parts[1])+1
                 raise SyntaxError("multiple ::=", (filename, lineno, pos, line))
@@ -108,7 +78,7 @@ def parseFile(filename):
         lineno += 1
     f.close()
     line = removeTrailingNewline(line)
-    initStr = unescapeRule(line)
+    initStr = line.split("::=")
     if len(initStr) > 1:
         raise SyntaxError("initial string cannot be a rule",
             (filename, lineno, len(initStr[0])+1, line))
